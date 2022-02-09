@@ -1,0 +1,68 @@
+---
+title: "Proyecto_!"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+
+
+```
+
+
+```{r}
+#Funcion para cargar paquetes. 
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+#Usage
+packages <- c("tidyverse","dplyr","haven","ggplot2","readxl","summarytools", "patchwork","stringr",
+              "tidyr","kableExtra","psych", "MASS", "foreign","wesanderson","ggpubr", "Rmisc",
+              "data,table","gtools","lubridate","AER","xtable","pBrackets","Hmisc","ri","ggpubr")
+
+ipak(packages)
+
+```
+
+```{r}
+#Se cargan los paquete después de aplicar un filtro desde el excel para la base de datos. solamente se dejan las difunciones que responden a transtornoS mentales. Debido a la utilización de ñ y tildes se ocupa el parametro  fileEncoding = "UTF-8-BOM" para solucinar el problema y que la base de datos este más limpia. 
+
+datos <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRez7yA-Sprhxj-mh29zQNZamqY6Tb69vGlkMw5JdMakclwacJH70LzFMGuHrbYvp4YEd2VnQ1MIext/pub?output=csv",  fileEncoding = "UTF-8-BOM")
+
+#Se aplica un view a los datos para establecer
+
+head(datos)
+view(datos)
+
+```
+
+
+
